@@ -2,9 +2,15 @@ package com.webbd777.jdbc_database;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -32,6 +38,16 @@ public class StudentController {//implements Initializable {
     private String address;
     private String amount;
 
+    // To go back to decition pane
+    private Parent root;
+    private Stage stage;
+    private Scene scene;
+
+    // To exit
+    @FXML
+    private AnchorPane scenePane;
+    private Stage stageClose;
+
     public void Entered(ActionEvent event) throws Exception {
 
         id = idField.getText();
@@ -54,6 +70,24 @@ public class StudentController {//implements Initializable {
         TimeUnit.SECONDS.sleep(2);
         successLabel.setText("Add another student?");
 
+    }
+
+    public void Back(ActionEvent action) throws Exception{
+
+        //Exit programme
+        stageClose = (Stage)scenePane.getScene().getWindow();
+        stageClose.close();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("decision.fxml"));
+        root = loader.load();
+
+        DecisionController deci = loader.getController();
+        deci.getStatement(statement);
+
+        stage = (Stage)((Node)action.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void State(Statement statement)  {

@@ -55,7 +55,7 @@ public class ConnectionController {
         String user = userField.getText();
         String password = passwordField.getText();
 
-        try {
+        try { /*This try catch is inefficent, must clean it lateer*/
 
             connection = DriverManager.getConnection(url, user, password);
             //Close stage
@@ -66,6 +66,9 @@ public class ConnectionController {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Credential Mismatch");
             alert.setContentText("Retry");
+
+            stage = (Stage) scenePane.getScene().getWindow();
+            stage.close();
         }
         connection = DriverManager.getConnection(url, user, password);
         Statement statement2 = connection.createStatement();
@@ -86,6 +89,9 @@ public class ConnectionController {
       //  databaseController.Tables(connection);
        // StudentController stuCintol = loader.getController();
        // stuCintol.State(statement2);
+
+        DecisionController deci = loader.getController();
+        deci.getStatement(statement2);
 
         sta = (Stage)((Node)event.getSource()).getScene().getWindow();
         sce = new Scene(par);
