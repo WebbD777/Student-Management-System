@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 public class ConnectionController {
@@ -67,6 +68,7 @@ public class ConnectionController {
             alert.setContentText("Retry");
         }
         connection = DriverManager.getConnection(url, user, password);
+        Statement statement2 = connection.createStatement();
 
         //Closes stage
         stage = (Stage) scenePane.getScene().getWindow();
@@ -74,9 +76,25 @@ public class ConnectionController {
 
         // DatabaseController database = new DatabaseController(connection);
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("decision.fxml"));
+        par = loader.load();
+
+        //addStudentController stuControl = loader.getController();
+        //Statement statement2 = connection.createStatement();
+        //stuControl.State(statement2);
+       // DatabaseController databaseController = loader.getController();
+      //  databaseController.Tables(connection);
+       // StudentController stuCintol = loader.getController();
+       // stuCintol.State(statement2);
+
+        sta = (Stage)((Node)event.getSource()).getScene().getWindow();
+        sce = new Scene(par);
+        sta.setScene(sce);
+        sta.show();
+/*
         FXMLLoader loader = new FXMLLoader(getClass().getResource("query-inject.fxml"));
         par = loader.load();
-        
+
         DatabaseController databaseController = loader.getController();
         databaseController.Tables(connection);
 
@@ -85,7 +103,7 @@ public class ConnectionController {
         sce = new Scene(par);
         sta.setScene(sce);
         sta.show();
-
+*/
 
 
        /* QueryInject inject = new QueryInject();

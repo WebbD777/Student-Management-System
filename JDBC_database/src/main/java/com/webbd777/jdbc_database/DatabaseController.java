@@ -23,6 +23,7 @@ public class DatabaseController implements Initializable {
     private ChoiceBox<String> queryBox;
     // private ArrayList<String> arr = new ArrayList<String>();
     private String[] queryArr = {"Select", "Insert"};
+    private Statement state;
 
     /*public  DatabaseController(Connection connection){
         connect = connection;
@@ -33,18 +34,18 @@ public class DatabaseController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         //tableBox.getItems().addAll(arr);
-        queryBox.getItems().addAll(queryArr);
+      //  queryBox.getItems().addAll(queryArr);
 
-        tableBox.setOnAction(this::getTable);
+       // tableBox.setOnAction(this::getTable);
     }
 
-    private void getTable(Event event) {
-        String table = (String) tableBox.getValue();
-    }
+  //  private void getTable(Event event) {
+   //     String table = (String) tableBox.getValue();
+   // }
 
     public void Tables(Connection connect) throws SQLException {
-        Statement statement = connect.createStatement();
-
+        state = connect.createStatement();
+/*
         ResultSet resultset = statement.executeQuery("SHOW TABLES");
         ArrayList<String> arr = new ArrayList<String>();
 
@@ -54,6 +55,8 @@ public class DatabaseController implements Initializable {
         tableBox.getItems().addAll(arr);
 
         //return arr;
+        */
+ //*/
     }
 
     // public void getTable(ActionEvent e){
