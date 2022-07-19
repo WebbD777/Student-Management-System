@@ -8,10 +8,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
@@ -37,6 +34,9 @@ public class DatabaseController implements Initializable {
       //  queryBox.getItems().addAll(queryArr);
 
        // tableBox.setOnAction(this::getTable);
+        //  ResultSetMetaData rsMetaData = rs.getMetaData();
+
+      //  rsMetaData.
     }
 
   //  private void getTable(Event event) {

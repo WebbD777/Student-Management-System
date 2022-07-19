@@ -29,7 +29,20 @@ public class DecisionController {
     private Scene sceneQuery;
 
     public void Select(ActionEvent event) throws Exception {
-        System.out.println("Selected something");
+
+        stageClose = (Stage)scenePane.getScene().getWindow();
+        stageClose.close();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("select.fxml"));
+        par = loader.load();
+
+        SelectController stuCintol = loader.getController();
+        stuCintol.tableFetch(statement);
+
+        stageQuery = (Stage)((Node)event.getSource()).getScene().getWindow();
+        sceneQuery = new Scene(par);
+        stageQuery.setScene(sceneQuery);
+        stageQuery.show();
     }
 
     public void Insert(ActionEvent event) throws Exception {
@@ -55,10 +68,11 @@ public class DecisionController {
         stageExit = (Stage)scenePane.getScene().getWindow();
         stageExit.close();
 
-        Alert alert = new Alert(Alert.AlertType.NONE);
+       /* Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Excited");
+        alert.close();*/                   // Fix alert messages
         TimeUnit.SECONDS.sleep(1);
-        alert.close();
+
 
     }
 

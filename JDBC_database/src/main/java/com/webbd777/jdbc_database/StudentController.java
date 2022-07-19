@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -47,6 +48,11 @@ public class StudentController {//implements Initializable {
     @FXML
     private AnchorPane scenePane;
     private Stage stageClose;
+
+    // To open select Scene
+    private Parent par;
+    private Stage stageQuery;
+    private Scene sceneQuery;
 
     public void Entered(ActionEvent event) throws Exception {
 
@@ -94,6 +100,7 @@ public class StudentController {//implements Initializable {
 
         this.statement = statement;
     }
+
 
   //  @Override
   //  public void initialize(URL url, ResourceBundle resourceBundle) {
