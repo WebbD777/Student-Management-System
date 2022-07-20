@@ -10,7 +10,7 @@ input database details, omitting the (https://) from the url
 
 * The next scene pictured below
 
-![image](https://user-images.githubusercontent.com/109418123/180092168-a9534179-c14b-4a85-89b8-754cd752894e.png)
+![image](https://user-images.githubusercontent.com/109418123/180092168-a9534179-c14b-4a85-89b8-754cd752894e.png = 20x30)
 
 * third
 ![image](https://user-images.githubusercontent.com/109418123/180092251-3b8b435c-a136-4af8-9aa6-993189083caa.png)
