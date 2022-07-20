@@ -2,6 +2,7 @@ package com.webbd777.jdbc_database;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
@@ -17,6 +18,8 @@ public class SelectController implements Initializable {
 
     @FXML
     private TreeView treeView;
+    @FXML
+    private TextArea textArea;
 
     private Connection connect;
 
@@ -27,8 +30,8 @@ public class SelectController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-       // TreeItem<String> rootItem = new TreeItem<>("Tables");
+        textArea.setEditable(false);
+        // TreeItem<String> rootItem = new TreeItem<>("Tables");
 
 
 
@@ -41,10 +44,27 @@ public class SelectController implements Initializable {
         }
 */
         treeView.setRoot(rootItem);
+
     }
 
-    public void selectTable(){
+    public void selectTable() throws SQLException {
 
+        Statement state3 = connect.createStatement();
+       // TreeItem<String> item2 = treeView.getSelectionModel().getSelectedItem();
+        TreeItem<String> item2 = (TreeItem<String>) treeView.getSelectionModel().getSelectedItem();
+
+        ArrayList<String> arr = new ArrayList<>();
+        textArea.clear();
+        if (item2 !=null /*&& item2.getChildren() == null*/ && item2.isLeaf() == true) {
+            String child = item2.getValue();
+            String parent = item2.getParent().getValue();
+            System.out.println("SELECT "+child+" FROM "+parent+";");
+            ResultSet rs3 = state3.executeQuery("SELECT "+child+" FROM "+parent+";");
+            textArea.setText(item2.getParent().getValue()+"\n"+"-----------"+"\n");
+            while (rs3.next()){
+                textArea.appendText(rs3.getString(1)+"\n");
+            }
+        }
     }
 
     public void tableFetch(Connection connection) throws SQLException {
