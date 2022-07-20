@@ -5,6 +5,7 @@ A project to practise my JDBC and JavaFx skills.
 
 * The first scene pictured below:![image](https://user-images.githubusercontent.com/109418123/180088207-e12af801-e9dc-4ae0-a67a-e38eca536b21.png)
 
-input database details, omitting the [https://] from the url
 
+input database details, omitting the (https://) from the url
 
+* The next scene pictured below
