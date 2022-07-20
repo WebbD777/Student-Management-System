@@ -1,11 +1,19 @@
 package com.webbd777.jdbc_database;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -27,6 +35,15 @@ public class SelectController implements Initializable {
     private ArrayList<String> arrTable = new ArrayList<String>();
     private  ResultSet resultset;
     TreeItem<String> rootItem = new TreeItem<>("Tables");
+
+    private Stage stage;
+    private Parent root;
+    private Scene scene;
+
+    private Stage stageClose ;
+
+    @FXML
+    private AnchorPane scenePane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -58,7 +75,7 @@ public class SelectController implements Initializable {
         if (item2 !=null /*&& item2.getChildren() == null*/ && item2.isLeaf() == true) {
             String child = item2.getValue();
             String parent = item2.getParent().getValue();
-            System.out.println("SELECT "+child+" FROM "+parent+";");
+
             ResultSet rs3 = state3.executeQuery("SELECT "+child+" FROM "+parent+";");
             textArea.setText(item2.getParent().getValue()+"\n"+"-----------"+"\n");
             while (rs3.next()){
@@ -96,4 +113,23 @@ public class SelectController implements Initializable {
 
       //  System.out.println("Array made");
     }
+
+    public void Back(ActionEvent event) throws IOException {
+
+        //Exit programme
+        stageClose = (Stage)scenePane.getScene().getWindow();
+        stageClose.close();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("decision.fxml"));
+        root = loader.load();
+
+        DecisionController deci = loader.getController();
+        deci.getStatement(connect);
+
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
 }

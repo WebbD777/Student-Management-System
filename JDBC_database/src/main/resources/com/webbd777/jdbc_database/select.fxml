@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webbd777.jdbc_database.SelectController">
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="744.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webbd777.jdbc_database.SelectController">
    <children>
       <TreeView fx:id="treeView" layoutX="23.0" layoutY="84.0" onContextMenuRequested="#selectTable" onMouseClicked="#selectTable" prefHeight="277.0" prefWidth="546.0" />
       <TextArea fx:id="textArea" layoutX="29.0" layoutY="397.0" prefHeight="200.0" prefWidth="546.0" text="Table data will be shown here" />
-      <Button layoutX="628.0" layoutY="535.0" mnemonicParsing="false" prefHeight="117.0" prefWidth="98.0" text="Back" />
+      <Button fx:id="backButton" layoutX="628.0" layoutY="535.0" mnemonicParsing="false" onAction="#Back" prefHeight="117.0" prefWidth="98.0" text="Back" />
    </children>
 </AnchorPane>
