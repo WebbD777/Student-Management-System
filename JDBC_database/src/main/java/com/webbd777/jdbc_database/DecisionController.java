@@ -10,12 +10,13 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import java.sql.Connection;
 import java.sql.Statement;
 import java.util.concurrent.TimeUnit;
 
 public class DecisionController {
 
-    private Statement statement;
+    private Connection connection;
 
     @FXML
     private AnchorPane scenePane;
@@ -37,7 +38,7 @@ public class DecisionController {
         par = loader.load();
 
         SelectController stuCintol = loader.getController();
-        stuCintol.tableFetch(statement);
+        stuCintol.tableFetch(connection);
 
         stageQuery = (Stage)((Node)event.getSource()).getScene().getWindow();
         sceneQuery = new Scene(par);
@@ -55,7 +56,7 @@ public class DecisionController {
         par = loader.load();
 
         StudentController stuCintol = loader.getController();
-        stuCintol.State(statement);
+        stuCintol.State(connection);
 
         stageQuery = (Stage)((Node)event.getSource()).getScene().getWindow();
         sceneQuery = new Scene(par);
@@ -76,7 +77,8 @@ public class DecisionController {
 
     }
 
-    public void getStatement(Statement statement){
-        this.statement = statement;
+    public void getStatement(Connection connection){
+        this.connection = connection;
+
     }
 }

@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
@@ -33,6 +34,7 @@ public class StudentController {//implements Initializable {
     private Label successLabel;
 
     private Statement statement;
+    private Connection connection;
 
     private String id;
     private String name;
@@ -88,7 +90,7 @@ public class StudentController {//implements Initializable {
         root = loader.load();
 
         DecisionController deci = loader.getController();
-        deci.getStatement(statement);
+        deci.getStatement(connection);
 
         stage = (Stage)((Node)action.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -96,9 +98,9 @@ public class StudentController {//implements Initializable {
         stage.show();
     }
 
-    public void State(Statement statement)  {
-
-        this.statement = statement;
+    public void State(Connection connection) throws SQLException {
+        this.connection = connection;
+        this.statement = connection.createStatement();
     }
 
 

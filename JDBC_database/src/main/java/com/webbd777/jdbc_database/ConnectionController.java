@@ -91,7 +91,7 @@ public class ConnectionController {
        // stuCintol.State(statement2);
 
         DecisionController deci = loader.getController();
-        deci.getStatement(statement2);
+        deci.getStatement(connection);
 
         sta = (Stage)((Node)event.getSource()).getScene().getWindow();
         sce = new Scene(par);

@@ -6,6 +6,7 @@ import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -16,6 +17,8 @@ public class SelectController implements Initializable {
 
     @FXML
     private TreeView treeView;
+
+    private Connection connect;
 
     private Statement state;
     private ArrayList<String> arrTable = new ArrayList<String>();
@@ -44,15 +47,26 @@ public class SelectController implements Initializable {
 
     }
 
-    public void tableFetch(Statement statement) throws SQLException {
+    public void tableFetch(Connection connection) throws SQLException {
 
-        state = statement;
+        connect = connection;
+        state = connection.createStatement();
 
-        resultset = statement.executeQuery("SHOW TABLES");
+        resultset = state.executeQuery("SHOW TABLES");
 
         while (resultset.next()){
+            String value = resultset.getString(1);
+            TreeItem<String> branch = new TreeItem<>(value);
 
-            TreeItem<String> branch = new TreeItem<>(resultset.getString(1));
+            Statement state2 = connection.createStatement();
+            ResultSet resultsetTable = state2.executeQuery("SHOW COLUMNS FROM "+value);
+
+            while (resultsetTable.next()){
+                String child = resultsetTable.getString(1);
+                TreeItem<String> childBranch = new TreeItem<>(child);
+               // System.out.println(child);
+                branch.getChildren().add(childBranch);
+            }
 
             rootItem.getChildren().add(branch);
 
@@ -60,6 +74,6 @@ public class SelectController implements Initializable {
            // System.out.println(resultset.getString(1));
         }
 
-        System.out.println("Array made");
+      //  System.out.println("Array made");
     }
 }
