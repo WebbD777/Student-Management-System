@@ -19,18 +19,24 @@ public class SelectController implements Initializable {
 
     private Statement state;
     private ArrayList<String> arrTable = new ArrayList<String>();
+    private  ResultSet resultset;
+    TreeItem<String> rootItem = new TreeItem<>("Tables");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        TreeItem<String> rootItem = new TreeItem<>("Tables");
+       // TreeItem<String> rootItem = new TreeItem<>("Tables");
 
+
+
+/*
         for (int i = 0; i < arrTable.size(); i ++) {
-            TreeItem<String> branch = new TreeItem<>("Tables");
 
-            rootItem.getChildren().add(branch);
+            TreeItem<String> branch = new TreeItem<>(arrTable.get(i));
+
+            rootItem.getChildren().set(i, branch);
         }
-
+*/
         treeView.setRoot(rootItem);
     }
 
@@ -42,12 +48,16 @@ public class SelectController implements Initializable {
 
         state = statement;
 
-        ResultSet resultset = statement.executeQuery("SHOW TABLES");
+        resultset = statement.executeQuery("SHOW TABLES");
 
         while (resultset.next()){
 
-            arrTable.add(resultset.getString(1));
+            TreeItem<String> branch = new TreeItem<>(resultset.getString(1));
 
+            rootItem.getChildren().add(branch);
+
+           // arrTable.add(resultset.getString(1));
+           // System.out.println(resultset.getString(1));
         }
 
         System.out.println("Array made");
